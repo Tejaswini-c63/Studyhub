@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile with Analytics</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+</head>
+<style>/* Analytics Container */
+    .analytics-container {
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .analytics-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    /* Student Profile */
+    .student {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .student-info {
+        text-align: center;
+    }
+    
+    .student-info img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+    
+    .charts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .chart {
+        flex: 1;
+        max-width: 400px;
+    }
+    
+    .chart canvas {
+        width: 100%;
+        height: 300px;
+    }
+    /* Updated CSS with background color and enlarged profile picture */
+body {
+font-family: Arial, sans-serif;
+background-color: #f9e3e3; /* Pale pink background color */
+margin: 0;
+padding: 0;
+}
+
+.student-info img {
+width: 150px; /* Enlarged profile picture */
+height: 150px; /* Enlarged profile picture */
+}
+
+    /* Add more CSS styles as needed */
+    </style>
+<body>
+
+
+<div class="analytics-container">
+    <h2>Student Profile with Analytics</h2>
+    <div class="student">
+        <div class="student-info">
+            <img src="img/imgi.jpg" alt="Profile Picture">
+            <h3>Tejaswini</h3>
+            <p>@Tejaswini</p>
+        </div>
+        <div class="charts">
+            <div class="chart">
+                <h4>Completion Progress</h4>
+                <canvas id="progress-chart"></canvas>
+            </div>
+            <div class="chart">
+                <h4>Study Hours (Pomodoro hours)</h4>
+                <canvas id="study-hours-chart"></canvas>
+            </div>
+        </div>
+        <div class="chart">
+            <h4>Engagement Metrics</h4>
+            <canvas id="engagement-metrics-chart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Sample data for completion progress
+    const progressData = {
+        labels: ['HTML', 'CSS', 'JavaScript', 'MySQL'],
+        datasets: [{
+            label: 'Completion Progress',
+            backgroundColor: '#007BFF',
+            data: [80, 70, 60, 50] // Random completion percentages
+        }]
+    };
+
+    // Sample data for study hours (Pomodoro Technique)
+    const studyHoursData = {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [{
+            label: 'Study Hours',
+            backgroundColor: '#28a745',
+            data: [15, 18, 14, 20] // Random study hours per week
+        }]
+    };
+
+    // Sample data for engagement metrics
+    const engagementMetricsData = {
+        labels: ['Page Views', 'Time Spent (minutes)', 'Interactions'],
+        datasets: [{
+            label: 'Engagement Metrics',
+            backgroundColor: ['#007BFF', '#28a745', '#ffc107'],
+            data: [200, 150, 50] // Random engagement metrics
+        }]
+    };
+
+    // Chart configuration for completion progress
+    const progressConfig = {
+        type: 'bar',
+        data: progressData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    title: {
+                        display: true,
+                        text: 'Completion Percentage (%)'
+                    }
+                }
+            }
+        }
+    };
+
+    // Chart configuration for study hours
+    const studyHoursConfig = {
+        type: 'line',
+        data: studyHoursData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Study Hours'
+                    }
+                }
+            }
+        }
+    };
+
+    // Chart configuration for engagement metrics
+    const engagementMetricsConfig = {
+        type: 'bar',
+        data: engagementMetricsData,
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Metrics'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Engagement Metrics'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false
+                }
+            }
+        }
+    };
+
+    // Initialize progress chart
+    const progressChart = new Chart(document.getElementById('progress-chart'), progressConfig);
+
+    // Initialize study hours chart
+    const studyHoursChart = new Chart(document.getElementById('study-hours-chart'), studyHoursConfig);
+
+    // Initialize engagement metrics chart
+    const engagementMetricsChart = new Chart(document.getElementById('engagement-metrics-chart'), engagementMetricsConfig);
+</script>
+
+</body>
+</html>

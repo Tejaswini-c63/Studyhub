@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Quiz with Results Graph</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.default.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" rel="stylesheet">
+    <style>
+        .feedback {
+            margin-top: 10px;
+        }
+        .chart-container {
+            width: 50%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Quiz: Basics of C Programming Language</h2>
+        <div id="quiz">
+            <!-- Questions will be inserted here -->
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary mb-2" id="checkButton">Check Answers</button>
+            <button type="button" class="btn btn-secondary mb-2" id="retryButton" style="display:none;">Retry Quiz</button>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="resultsChart"></canvas>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script>
+        const quizData = [
+            {
+                question: "1. Identify the C compiler of UNIX.",
+                options: ["GCC", "CC", "Borland"],
+                correct: "GCC"
+            },
+            {
+                question: "2. What is the built-in library function to compare two strings?",
+                options: ["string_cmp()", "strcmp()", "str_compare()"],
+                correct: "strcmp()"
+            },
+            {
+                question: "3. Which of the following is a logical OR operator?",
+                options: ["&&", "||", "None of these"],
+                correct: "||"
+            },
+            {
+                question: "4. C language has been developed by?",
+                options: ["Ken Thompson", "Dennis Ritchie", "Martin Richards"],
+                correct: "Dennis Ritchie"
+            },
+            {
+                question: "5. A C variable cannot start with?",
+                options: ["A number", "A special symbol other than underscore", "Both"],
+                correct: "Both"
+            },
+            {
+                question: "6. Which of the following statements is wrong?",
+                options: ["Count+5=res;", "Val='A' * 'B';", "INT=123;"],
+                correct: "INT=123;"
+            },
+            {
+                question: "7. The maximum value that an integer constant can have is?",
+                options: ["32767", "1.7014e+38", "456H"],
+                correct: "32767"
+            },
+            {
+                question: "8. What statement can print \\n on screen?",
+                options: ['Printf("\\n")', 'Printf("n\\")', 'Print("\\n")'],
+                correct: 'Printf("\\n")'
+            },
+            {
+                question: "9. How is an array initialized in C language?",
+                options: ["int arr[3]={1,2,3}", "int arr()=[1,2,3]", "int a[]=new int[]"],
+                correct: "int arr[3]={1,2,3}"
+            },
+            {
+                question: "10. What is the disadvantage of arrays in C?",
+                options: ["The amount of memory to be allocated needs to be known beforehand.", "Elements of an array can be accessed in constant time.", "Elements are stored in contiguous memory blocks."],
+                correct: "The amount of memory to be allocated needs to be known beforehand."
+            }
+        ];
+
+        $(document).ready(function () {
+            // Generate the quiz questions
+            const quizContainer = $('#quiz');
+            quizData.forEach((q, index) => {
+                const questionHTML = `
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h4 class="card-title">${q.question}</h4>
+                        </div>
+                        <div class="card-body">
+                            <form id="questionForm${index + 1}">
+                                ${q.options.map(option => `
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="optradio${index + 1}" value="${option}">
+                                        <label class="form-check-label">${option}</label>
+                                    </div>
+                                `).join('')}
+                            </form>
+                        </div>
+                    </div>
+                `;
+                quizContainer.append(questionHTML);
+            });
+
+            $('#checkButton').on('click', checkAnswers);
+            $('#retryButton').on('click', retryQuiz);
+        });
+
+        function checkAnswers() {
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let allQuestionsAnswered = true;
+            let unansweredQuestions = [];
+
+            quizData.forEach((q, index) => {
+                const selectedAnswer = $(`input[name="optradio${index + 1}"]:checked`).val();
+                const questionContainer = $(`#questionForm${index + 1}`).parent();
+
+                if (!selectedAnswer) {
+                    allQuestionsAnswered = false;
+                    unansweredQuestions.push(index + 1);
+                } else {
+                    const feedback = $('<div class="feedback"></div>');
+                    if (selectedAnswer === q.correct) {
+                        correctCount++;
+                        feedback.text('Correct!').css('color', 'green');
+                    } else {
+                        incorrectCount++;
+                        feedback.text(`Incorrect. Correct answer: ${q.correct}`).css('color', 'red');
+                    }
+                    questionContainer.append(feedback);
+                }
+
+                $(`#questionForm${index + 1} input[type="radio"]`).attr('disabled', true);
+            });
+
+            if (allQuestionsAnswered) {
+                alert(`You got ${correctCount} correct answers out of 10 questions.`);
+                $('#retryButton').show();
+                drawChart(correctCount, incorrectCount);
+            } else {
+                alert('Please select an option for questions: ' + unansweredQuestions.join(', '));
+            }
+        }
+
+        function retryQuiz() {
+            $('.feedback').remove();
+            $('input[type="radio"]').attr('disabled', false).prop('checked', false);
+            $('#retryButton').hide();
+        }
+
+        function drawChart(correctCount, incorrectCount) {
+            const ctx = document.getElementById('resultsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Correct', 'Incorrect'],
+                    datasets: [{
+                        label: 'Quiz Results',
+                        data: [correctCount, incorrectCount],
+                        backgroundColor: ['#28a745', '#dc3545']
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

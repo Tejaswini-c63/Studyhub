@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>eLEARNING - eLearning HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- <link href="desgin/css/style.css" rel="stylesheet"> -->
+</head>
+<style>
+   /* General styles */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f7f7f7;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1.heading {
+    text-align: center;
+    color: #333;
+    margin: 20px 0;
+    font-size: 2.5em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Playlist details section */
+.playlist-details {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.playlist-details .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.playlist-details .column {
+    flex: 1;
+    margin: 10px;
+}
+
+.playlist-details .save-playlist button {
+    background: linear-gradient(45deg, #ff6347, #ff4500);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.playlist-details .save-playlist button:hover {
+    background: linear-gradient(45deg, #ff4500, #ff6347);
+}
+
+.playlist-details .save-playlist button i {
+    margin-right: 10px;
+}
+
+.playlist-details .thumb {
+    position: relative;
+}
+
+.playlist-details .thumb img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.playlist-details .thumb span {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 1em;
+}
+
+.playlist-details .tutor {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.playlist-details .tutor img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.playlist-details .tutor div {
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist-details .tutor h3 {
+    margin: 0;
+    font-size: 1.4em;
+    color: #333;
+}
+
+.playlist-details .tutor span {
+    color: #777;
+    font-size: 0.9em;
+}
+
+.playlist-details .details h3 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.playlist-details .details p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.playlist-details .details .inline-btn {
+    display: inline-block;
+    background: #00bfff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+.playlist-details .details .inline-btn:hover {
+    background: #1e90ff;
+}
+
+/* Playlist videos section */
+.playlist-videos {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.playlist-videos .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.playlist-videos .box {
+    width: 32%;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #333;
+    background: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.playlist-videos .box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.playlist-videos .box img {
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #eee;
+}
+
+.playlist-videos .box h3 {
+    padding: 10px;
+    font-size: 1.2em;
+    background: #fff;
+    margin: 0;
+    color: #333;
+}
+
+.playlist-videos .box i {
+    font-size: 1.5em;
+    padding: 10px;
+    color: #ff6347;
+}
+
+</style>
+<body>
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>EduHub</h2>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="index.html" class="nav-item nav-link active">Home</a>
+            <a href="about.html" class="nav-item nav-link">About us</a>
+            <a href="courses.html" class="nav-item nav-link">Courses</a>
+           
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Assesments</a>
+                <div class="dropdown-menu fade-down m-0">
+                    <a href="quiz.html" class="dropdown-item">Quiz</a>
+                    <a href="vacabulary.html" class="dropdown-item">Vocabulary</a>
+                    
+                    
+                    
+                </div>
+                
+            </div>
+            
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Event Management</a>
+                <div class="dropdown-menu fade-down m-0">
+                    <a href="calender.html" class="dropdown-item">Schedule</a>
+                    <a href="CHAT ROOM/chat.html" class="dropdown-item">chat</a>
+                    <a href="https://meet.google.com/rjz-ihnx-sbk" class="dropdown-item">virtual meeting</a>
+                    
+                    
+                </div>
+                
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Resources</a>
+                <div class="dropdown-menu fade-down m-0">
+                    <a href="team.html" class="dropdown-item">Our Team</a>
+                    <a href="testimonial.html" class="dropdown-item">Textbook</a>
+                    <a href="assignment.html" class="dropdown-item">Assignment</a>
+                    <a href="RoadMap.html" class="dropdown-item">RoadMap</a>
+                    
+                </div>
+                
+            </div>
+            <a href="contact.html" class="nav-item nav-link">Contact</a>
+            
+        </div>
+        <a href="profile.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Profile </a>
+    </div>
+    
+</nav>
+<!-- Navbar End -->
+<header class="header">
+   
+   <!-- <section class="flex">
+
+      <a href="home.html" class="logo">Educa.</a>
+
+      <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form>
+
+      <!- <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div> -->
+
+      <!-- <div class="profile">
+         <img src="images/pic-1.jpg" class="image" alt="">
+         <h3 class="name">shaikh anas</h3>
+         <p class="role">studen</p>
+         <a href="profile.html" class="btn">view profile</a>
+         <div class="flex-btn">
+            <a href="login.html" class="option-btn">login</a>
+            <a href="register.html" class="option-btn">register</a>
+         </div>
+      </div> ->
+
+   </section> -->
+
+</header>   
+
+<!-- <div class="side-bar">
+
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
+
+   <div class="profile">
+      <img src="images/pic-1.jpg" class="image" alt="">
+      <h3 class="name">shaikh anas</h3>
+      <p class="role">studen</p>
+      <a href="profile.html" class="btn">view profile</a>
+   </div>
+
+   <nav class="navbar">
+      <a href="home.html"><i class="fas fa-home"></i><span>home</span></a>
+      <a href="about.html"><i class="fas fa-question"></i><span>about</span></a>
+      <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
+      <a href="teachers.html"><i class="fas fa-chalkboard-user"></i><span>teachers</span></a>
+      <a href="contact.html"><i class="fas fa-headset"></i><span>contact us</span></a>
+   </nav>
+
+</div> -->
+
+<section class="playlist-details">
+
+   <h1 class="heading">playlist details</h1>
+
+   <div class="row">
+
+      <div class="column">
+         <form action="" method="post" class="save-playlist">
+            <button type="submit"><i class="far fa-bookmark"></i> <span>save playlist</span></button>
+         </form>
+   
+         <div class="thumb">
+            <img src="images/thumb-1.png" alt="">
+            <span>10 videos</span>
+         </div>
+      </div>
+      <div class="column">
+         <div class="tutor">
+            <img src="desgin/images/pic-2.jpg" alt="">
+            <div>
+               <h3>john deo</h3>
+               <span>21-10-2022</span>
+            </div>
+         </div>
+   
+         <div class="details">
+            <h3>complete HTML tutorial</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum minus reiciendis, error sunt veritatis exercitationem deserunt velit doloribus itaque voluptate.</p>
+            <a href="profile.html" class="inline-btn">view profile</a>
+         </div>
+      </div>
+   </div>
+
+</section>
+
+<section class="playlist-videos">
+
+   <h1 class="heading">playlist videos</h1>
+
+   <div class="box-container">
+
+      <a class="box" href="watch-video.html">
+         <i class="fas fa-play"></i>
+         <img src="desgin/images/post-1-1.png" alt="">
+         <h3>complete HTML tutorial (part 01)</h3>
+      </a>
+
+      <a class="box" href="watch-video.html">
+         <i class="fas fa-play"></i>
+         <img src="desgin/images/post-1-2.png" alt="">
+         <h3>complete HTML tutorial (part 02)</h3>
+      </a>
+
+      <a class="box" href="watch-video.html">
+         <i class="fas fa-play"></i>
+         <img src="desgin/images/post-1-3.png" alt="">
+         <h3>complete HTML tutorial (part 03)</h3>
+      </a>
+
+      <a class="box" href="watch-video.html">
+         <i class="fas fa-play"></i>
+         <img src="desgin/images/post-1-4.png" alt="">
+         <h3>complete HTML tutorial (part 04)</h3>
+      </a>
+
+      <a class="box" href="watch-video.html">
+         <i class="fas fa-play"></i>
+         <img src="desgin/images/post-1-5.png" alt="">
+         <h3>complete HTML tutorial (part 05)</h3>
+      </a>
+
+      <a class="box" href="watch-video.html">
+         <i class="fas fa-play"></i>
+         <img src="desgin/images/post-1-6.png" alt="">
+         <h3>complete HTML tutorial (part 06)</h3>
+      </a>
+
+   </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- footer start -->
+
+
+<div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-3">Quick Link</h4>
+                <a class="btn btn-link" href="about.html">About Us</a>
+                <a class="btn btn-link" href="contact.html">Contact Us</a>
+                <a class="btn btn-link" href="">Privacy Policy</a>
+                <a class="btn btn-link" href="">Terms & Condition</a>
+                <a class="btn btn-link" href="">FAQs & Help</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-3">Contact</h4>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Shankara gowda Road , Mandya</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 7823452344</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>eduhub@ac.in</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href="www.twitter.com"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="www.youtube.com"><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-3">Gallery</h4>
+                <div class="row g-2 pt-2">
+                    <div class="col-4">
+                        <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-3">Newsletter</h4>
+                <p>"Discover the Latest Innovations in Online Learning with EduHub"</p>
+                <div class="position-relative mx-auto" style="max-width: 400px;">
+                    <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+
+                   
+                    Designed By <a class="border-bottom" href="">Phoenix</a>
+                   
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="footer-menu">
+                        <a href="">Home</a>
+                        <a href="">Cookies</a>
+                        <a href="">Help</a>
+                        <a href="">FQAs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+   
+</body>
+</html>
